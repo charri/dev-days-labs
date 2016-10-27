@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "Microsoft.Azure.Mobile.Client": "3.0.2",
-    "Microsoft.Azure.Mobile.Client.SQLiteStore": "3.0.2",
+    "Microsoft.Azure.Mobile.Client": "3.0.3",
+    "Microsoft.Azure.Mobile.Client.SQLiteStore": "3.0.3",
     "Microsoft.Bcl": "1.1.10",
     "Microsoft.Bcl.Build": "1.0.21",
     "Microsoft.Net.Http": "2.2.29",

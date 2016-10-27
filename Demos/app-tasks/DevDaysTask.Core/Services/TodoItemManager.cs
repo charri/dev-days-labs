@@ -13,11 +13,29 @@ namespace DevDaysTasks
 {
     public partial class TodoItemManager
     {
+        #region [ Stuff ]
         static TodoItemManager defaultInstance = new TodoItemManager();
         MobileServiceClient client;
 
         IMobileServiceSyncTable<TodoItem> todoTable;
 
+        public static TodoItemManager DefaultManager
+        {
+            get
+            {
+                return defaultInstance;
+            }
+            private set
+            {
+                defaultInstance = value;
+            }
+        }
+
+        public MobileServiceClient CurrentClient
+        {
+            get { return client; }
+        }
+        #endregion
 
         public async Task Initialize()
         {
@@ -39,24 +57,7 @@ namespace DevDaysTasks
             todoTable = client.GetSyncTable<TodoItem>();
 
         }
-
-        public static TodoItemManager DefaultManager
-        {
-            get
-            {
-                return defaultInstance;
-            }
-            private set
-            {
-                defaultInstance = value;
-            }
-        }
-
-        public MobileServiceClient CurrentClient
-        {
-            get { return client; }
-        }
-
+        
         public async Task<ObservableCollection<TodoItem>> GetTodoItemsAsync(bool syncItems = false)
         {
             try
@@ -102,8 +103,7 @@ namespace DevDaysTasks
             }
             
         }
-
-
+        
         public async Task SyncAsync()
         {
             await Initialize();
@@ -128,6 +128,7 @@ namespace DevDaysTasks
                 }
             }
 
+            #region Error Handling
             // Simple error/conflict handling. A real application would handle the various errors like network conditions,
             // server conflicts and others via the IMobileServiceSyncHandler.
             if (syncErrors != null)
@@ -148,6 +149,7 @@ namespace DevDaysTasks
                     Debug.WriteLine(@"Error executing sync operation. Item: {0} ({1}). Operation discarded.", error.TableName, error.Item["id"]);
                 }
             }
+            #endregion
         }
     }
 }

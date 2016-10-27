@@ -126,7 +126,12 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <Import Project="..\DevDaysTasks.Shared\DevDaysTasks.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\DevDaysTask.Core\DevDaysTasks.Core.csproj">
+      <Project>{164f6646-f059-4703-8efd-8020515da77d}</Project>
+      <Name>DevDaysTasks.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
